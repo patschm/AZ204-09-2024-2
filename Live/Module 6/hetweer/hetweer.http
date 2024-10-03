@@ -1,0 +1,6 @@
+@hetweer_HostAddress = http://localhost:5037
+
+GET {{hetweer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
