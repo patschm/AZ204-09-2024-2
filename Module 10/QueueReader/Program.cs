@@ -5,9 +5,9 @@ namespace QueueReader;
 
 class Program
 {
-    static string EndPoint = "zeurpot.servicebus.windows.net";
-    static (string Name, string KeY) SasKeyReader = ("lezert", "a046w/CVaKuuT1l+UGxrol3mKqhXReuZU+ASbFnHS3s=");
-    static string QueueName = "ookduur";
+    static string EndPoint = "ps-namespace.servicebus.windows.net";
+    static (string Name, string KeY) SasKeyReader = ("tessa", "HG8LJKJjOQpvOyONmYFH/CDpyfSsS2C3t+ASbPpmpv8=");
+    static string QueueName = "sessions";
 
     static async Task Main(string[] args)
     {
@@ -53,7 +53,7 @@ class Program
         };
 
         receiver.ProcessErrorAsync += evtArg => {
-            Console.WriteLine("Ooops");
+            Console.WriteLine("Ook Ooops");
             Console.WriteLine(evtArg.Exception.Message);
             return Task.CompletedTask;
         };

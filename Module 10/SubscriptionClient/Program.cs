@@ -5,9 +5,9 @@ namespace SubscriptionClient;
 
 class Program
 {
-    static string EndPoint = "zeurpot.servicebus.windows.net";
-    static (string Name, string KeY) SasKeyReader = ("Reader", "1ZFQvtC/Xv8sEcsyoUX6sQszCAd2lvYwn+ASbFH/awU=");
-    static string TopicName = "ze-topic";
+    static string EndPoint = "ps-namespace.servicebus.windows.net";
+    static (string Name, string KeY) SasKeyReader = ("Reader", "6xUkKZ6hxBzGrA/bItbj9jpRT3VV/rYkf+ASbCgjLyw=");
+    static string TopicName = "onderwerp";
 
     static async Task Main(string[] args)
     {
@@ -58,8 +58,8 @@ class Program
         var client = new ServiceBusClient(EndPoint, cred);
         var processor = client.CreateProcessor(TopicName, subscription);
         processor.ProcessMessageAsync += evtArg => {
-            Console.WriteLine($"{subscription} receiced");
-            Console.WriteLine(evtArg.Message.Body.ToString());
+            Console.WriteLine($"{subscription} received: {evtArg.Message.Body.ToString()}");
+           //Console.WriteLine(evtArg.Message.Body.ToString());
             //evtArg.CompleteMessageAsync()
             return Task.CompletedTask;
         };

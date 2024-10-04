@@ -10,7 +10,7 @@ namespace WebSite
 {
     public class Startup
     {
-        private string connectionString = "ps-cash.redis.cache.windows.net:6380,password=kpbbWGjmbbg6JQjM0Iz0xrVLYK6GqgBipAzCaKmOVpA=,ssl=True,abortConnect=False";
+        private string connectionString = "ps-radijs.redis.cache.windows.net:6380,password=QIAniTPH2y6JWWyVrAohKKe2Onabucj6pAzCaMqw7sw=,ssl=True,abortConnect=False";
         private string baseAddress = "https://localhost:5001";
 
         public Startup(IConfiguration configuration)
@@ -29,7 +29,7 @@ namespace WebSite
             services.AddStackExchangeRedisCache(opt =>
             {
                 opt.Configuration = connectionString;
-                opt.InstanceName = nameof(WebSite);
+                opt.InstanceName = nameof(WebSite)+"_";
             });
             //services.AddDistributedMemoryCache();
 

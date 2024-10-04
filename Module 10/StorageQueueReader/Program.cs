@@ -5,8 +5,8 @@ namespace StorageQueueReader;
 
 class Program
 {
-    static string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=psstoor;AccountKey=/qY7ApBAGaDgCKFU340VNfu3mIHAHRV2kOHA3yuUGIXWW5NOUdhKPNCAshYVe4atbI8DZT39Z1xX+AStsM+fug==;EndpointSuffix=core.windows.net";
-    static string QueueName = "jumbo";
+    static string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=psstoor;AccountKey=Uc/DEdGN5QjdMLmInQF/Hvv7b3He7HLfnM29nfEUw+uRQCa/ps0OK3ZO7/kTNJs/iJMp8qGNv6Hv+AStxB0pIg==;EndpointSuffix=core.windows.net";
+    static string QueueName = "brakkeding";
     static async Task Main(string[] args)
     {
         await ReadFromQueueAsync();
@@ -16,9 +16,9 @@ class Program
 
     private static async Task ReadFromQueueAsync()
     {
-        var token = new AzureSasCredential("?sv=2022-11-02&ss=q&srt=so&sp=rwdacp&se=2024-09-27T15:45:25Z&st=2024-09-27T07:45:25Z&spr=https&sig=9Dk9zVpfpCilobg60VtcdojtcVIXRP%2BGm6t8q7qV0D0%3D");
-        var client = new QueueClient(new Uri("https://psstatehup.queue.core.windows.net/kueueue"), token);
-        //var client = new QueueClient(ConnectionString, QueueName);
+       // var token = new AzureSasCredential("?sv=2022-11-02&ss=q&srt=so&sp=rwdacp&se=2024-09-27T15:45:25Z&st=2024-09-27T07:45:25Z&spr=https&sig=9Dk9zVpfpCilobg60VtcdojtcVIXRP%2BGm6t8q7qV0D0%3D");
+        //var client = new QueueClient(new Uri("https://psstatehup.queue.core.windows.net/kueueue"), token);
+        var client = new QueueClient(ConnectionString, QueueName);
         int i = 0;
         do
         {

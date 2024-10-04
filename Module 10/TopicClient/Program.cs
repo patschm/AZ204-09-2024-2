@@ -6,10 +6,10 @@ namespace TopicClient;
 
 class Program
 {
-    static string EndPoint = "zeurpot.servicebus.windows.net";
-    static (string Name, string Key) SasKeyManager = ("RootManageSharedAccessKey", "pexVcAvMU7tf9NlgRiC3F/AEZ0xbdUcXG+ASbILddSg=");
-    static (string Name, string Key) SasKeyWriter = ("Writer", "rwAZXKGsA3dQsA9L7/RL00ixhZGZbsd4f+ASbHDnqYo=");
-    static string TopicName = "ze-topic";
+    static string EndPoint = "ps-namespace.servicebus.windows.net";
+    static (string Name, string Key) SasKeyManager = ("bas", "Wsbidp0ye2kdCa963umSQvsiybFFMnkGE+ASbDVDoSc=");
+    static (string Name, string Key) SasKeyWriter = ("stijn", "0Y7rARuJbj19/X7Sok09q1CqKpNyzugFi+ASbDvstDU=");
+    static string TopicName = "onderwerp";
 
     static async Task Main(string[] args)
     {
@@ -38,7 +38,7 @@ class Program
         var client = new ServiceBusAdministrationClient(EndPoint, cred);
         
         var salesInfo = new CreateSubscriptionOptions(TopicName, "Sales");
-        var salesRule = new CreateRuleOptions("sales", new SqlRuleFilter("price > 100"));
+        var salesRule = new CreateRuleOptions("sales", new SqlRuleFilter("price > 500"));
         await client.CreateSubscriptionAsync(salesInfo, salesRule);
 
         var supportInfo = new CreateSubscriptionOptions(TopicName, "Support");
@@ -55,14 +55,14 @@ class Program
 
     private static async Task WriteToTopicAsync()
     {
-        var cred = new AzureNamedKeyCredential(SasKeyManager.Name, SasKeyManager.Key);
+        var cred = new AzureNamedKeyCredential(SasKeyWriter.Name, SasKeyWriter.Key);
         var client = new ServiceBusClient(EndPoint, cred);
         var sender = client.CreateSender(TopicName);
 
         Random rnd = new Random(); 
-        for(int i = 0; i < 1000; i++)
+        for(int i = 0; i < 200; i++)
         {
-            var price = rnd.Next(0, 2000);
+            var price = rnd.Next(0, 3000);
             var msg = new ServiceBusMessage(BinaryData.FromString($"Sold (${price})"));
             msg.ApplicationProperties.Add("price", price);
             msg.ContentType = "string";

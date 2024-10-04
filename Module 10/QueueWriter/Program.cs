@@ -6,10 +6,10 @@ namespace QueueWriter;
 
 class Program
 {
-    static string EndPoint = "zeurpot.servicebus.windows.net";
+    static string EndPoint = "ps-namespace.servicebus.windows.net";
     static (string Name, string Key) SasKeyManager = ("RootManageSharedAccessKey","V7CAvAexUPQ38rs/vI03cKo4xgUctnmL7HuUlkLva+4=");
-    static (string Name, string Key)  SasKeyWriter = ("schrijvert", "BwR2gmpIG0n78226CyHNIsbRkKEORdvC8+ASbDSN/QI=");
-    static string QueueName = "ookduur";
+    static (string Name, string Key)  SasKeyWriter = ("sjoerd", "y07HJBbmDbPfkKl/V0317NPtL3/A6dZhF+ASbIqKI9g=");
+    static string QueueName = "sessions";
 
     static async Task Main(string[] args)
     {
@@ -24,7 +24,7 @@ class Program
         var cred = new AzureNamedKeyCredential(SasKeyWriter.Name, SasKeyWriter.Key);
         var client = new ServiceBusClient(EndPoint, cred);
         var sender = client.CreateSender(QueueName);
-        //var sender = client.Cre
+
         
         int i = 0;
         ConsoleKey key;

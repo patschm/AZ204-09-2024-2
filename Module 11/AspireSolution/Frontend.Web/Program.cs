@@ -16,7 +16,7 @@ public class Program
         builder.Services.AddOpenTelemetry()
         .ConfigureResource(res => res.AddService("Web"))
          .UseAzureMonitor(conf => {
-             conf.ConnectionString = @"InstrumentationKey=14cfff9f-681d-4fd5-9161-8442e6926567;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=6aacfdc9-086c-4851-9996-66cdc0536145";
+             conf.ConnectionString = @"InstrumentationKey=5bfd812c-b01d-4328-aadb-f8d8b0b6542c;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=7ba7fc8b-f165-464f-97d9-83f24bb81c72";
          })
         .WithMetrics(metrics =>
         {

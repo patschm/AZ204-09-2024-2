@@ -9,9 +9,9 @@ namespace EvtGridCmds;
 
 class Program
 {
-    static string topicHost = "ps-topic.westeurope-1.eventgrid.azure.net";
+    static string topicHost = "ps-onderwerp.westeurope-1.eventgrid.azure.net";
     static string topicEP = $"https://{topicHost}/api/events";
-    static string topicKey = "7xkJAg3h3abLTFDvOxASOE8aGv6TvoxBDOMAN1EbAftlesruSdCHJQQJ99AIAC5RqLJXJ3w3AAABAZEGGyDH";
+    static string topicKey = "eAf3EUvDEu2yui3Jc4VXEun0Id3xf5oYrkDziOQHEHvQnCTThby8JQQJ99AJAC5RqLJXJ3w3AAABAZEG9CIR";
 
     static async Task Main(string[] args)
     {

@@ -11,13 +11,18 @@ namespace EvtHubConsumer;
 
 class Program
 {
-    private const string conStr = "Endpoint=sb://ps-names.servicebus.windows.net/;SharedAccessKeyName=Lezer;SharedAccessKey=erjjXgt7HELpPCDplM5zp2fhBi4NLMowN+AEhG37Cu0=;EntityPath=hup";
-    private const string hubName = "hup";
+    private const string conStr = "Endpoint=sb://tessas.servicebus.windows.net/;SharedAccessKeyName=lezert;SharedAccessKey=MCqglbdC9DelvRbr7eGkiKehhnYMhz0MA+AEhA38jMQ=;EntityPath=sjoerd";
+    private const string hubName = "sjoerd";
 
-    private const string checkpointStorage = "DefaultEndpointsProtocol=https;AccountName=psstatehup;AccountKey=/WTCis/NV7uKARfc51dEQk2OCf68ji6k7uXTntqgcr8tzf12XP0bdg26FOViF6xvDVMoAcVzWNoV+ASt3Xkmwg==;EndpointSuffix=core.windows.net";
+    private const string checkpointStorage = "DefaultEndpointsProtocol=https;AccountName=psstoor;AccountKey=9GtNt8vHxuJpT5wziWYQc0ECrkTU2GsakfoVqbQnh134HCDtFX2xrMKLCOoT6dabWy4x7rOn6qP3+ASt+mGqJg==;EndpointSuffix=core.windows.net";
+
+    private static string? group = "ikke";
 
     static async Task Main(string[] args)
     {
+        if (args.Length > 0) { 
+            group = args[0].Trim();
+        }
         //await LeanAndMean();
         await UsingProcessors();
         Console.ReadLine();
@@ -33,7 +38,7 @@ class Program
         BlobContainerClient blobContainerClient = new BlobContainerClient(checkpointStorage, "eventhub");
         blobContainerClient.CreateIfNotExists();
 
-        var processor = new EventProcessorClient(blobContainerClient, "forme", conStr, hubName);
+        var processor = new EventProcessorClient(blobContainerClient, group, conStr, hubName);
 
         processor.ProcessEventAsync += async partitionEvent =>
         {
